@@ -1,0 +1,32 @@
+branch: build-39
+tasks:
+  conda-win:
+    branch: build-39-conda-win
+    commit: 71a4a59dd5551fdd54fb9701dc4aa9b2b73dc4c6
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: a836a032d99eab95031b848922cda1c2e51fcc50
+      ARROW_VERSION: 0.9.1.dev260+dirty
+      BUILD_REF: a836a032d99eab95031b848922cda1c2e51fcc50
+      BUILD_TAG: build-39
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev260+dirty
+    platform: WIN
+    template: conda-recipes/appveyor.yml
+  wheel-win:
+    branch: build-39-wheel-win
+    commit: 7242f39cbdb3d851aba817e91b9f9618b2efb820
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: a836a032d99eab95031b848922cda1c2e51fcc50
+      ARROW_VERSION: 0.9.1.dev260+dirty
+      BUILD_REF: a836a032d99eab95031b848922cda1c2e51fcc50
+      BUILD_TAG: build-39
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev260+dirty
+    platform: WIN
+    template: python-wheels/appveyor.yml
