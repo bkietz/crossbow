@@ -1,0 +1,92 @@
+branch: build-35
+tasks:
+  conda-linux:
+    branch: build-35-conda-linux
+    commit: e18da705ee92c1552077573dc9362e4f977e3b96
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      ARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+      BUILD_REF: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      BUILD_TAG: build-35
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+    platform: LINUX
+    template: conda-recipes/travis.linux.yml
+  conda-osx:
+    branch: build-35-conda-osx
+    commit: 7a539e3d83c4d9f98ada6ce12b4d845a3d0328c9
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      ARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+      BUILD_REF: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      BUILD_TAG: build-35
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+    platform: OSX
+    template: conda-recipes/travis.osx.yml
+  conda-win:
+    branch: build-35-conda-win
+    commit: bb0e2fae9c3ab1ae38b6b4603bef1106ba7e9ea9
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      ARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+      BUILD_REF: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      BUILD_TAG: build-35
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+    platform: WIN
+    template: conda-recipes/appveyor.yml
+  wheel-linux:
+    branch: build-35-wheel-linux
+    commit: 83b54f844574dfabae432e488ac0d4788c6e3dd0
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      ARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+      BUILD_REF: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      BUILD_TAG: build-35
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+    platform: LINUX
+    template: python-wheels/travis.linux.yml
+  wheel-osx:
+    branch: build-35-wheel-osx
+    commit: 0ed0b943562c21390174b8ed07ba36dd4361c506
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      ARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+      BUILD_REF: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      BUILD_TAG: build-35
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+    platform: OSX
+    template: python-wheels/travis.osx.yml
+  wheel-win:
+    branch: build-35-wheel-win
+    commit: daf8d5f6d8acf02699ac9257db5b7ff7ec74e304
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      ARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+      BUILD_REF: 7bc29b0fa9e8a02a9824e3f53eeec32ccf924b0a
+      BUILD_TAG: build-35
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev259+g7bc29b0f.d20180613
+    platform: WIN
+    template: python-wheels/appveyor.yml
