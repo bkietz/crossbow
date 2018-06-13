@@ -1,0 +1,17 @@
+branch: build-27
+tasks:
+  wheel-win:
+    branch: build-27-wheel-win
+    commit: b237ddc0dfddd662bd41b9c626da6fdecb876caa
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 98cad0aadff771d2433155ea8dc266f942334330
+      ARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+      BUILD_REF: 98cad0aadff771d2433155ea8dc266f942334330
+      BUILD_TAG: build-27
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+    platform: WIN
+    template: python-wheels/appveyor.yml
