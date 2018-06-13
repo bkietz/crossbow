@@ -1,0 +1,17 @@
+branch: build-40
+tasks:
+  conda-win:
+    branch: build-40-conda-win
+    commit: 60609e674cc6a9f2a9607395fed75e361c102076
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 8d00348cfbc66b6c1f055e42fe23112e476da04f
+      ARROW_VERSION: 0.9.1.dev261+dirty
+      BUILD_REF: 8d00348cfbc66b6c1f055e42fe23112e476da04f
+      BUILD_TAG: build-40
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev261+dirty
+    platform: WIN
+    template: conda-recipes/appveyor.yml
