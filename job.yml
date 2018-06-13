@@ -1,0 +1,17 @@
+branch: build-33
+tasks:
+  conda-linux:
+    branch: build-33-conda-linux
+    commit: 7a63a52bc582f44498ae1bcca5793ea1a459b9be
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 98cad0aadff771d2433155ea8dc266f942334330
+      ARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+      BUILD_REF: 98cad0aadff771d2433155ea8dc266f942334330
+      BUILD_TAG: build-33
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+    platform: LINUX
+    template: conda-recipes/travis.linux.yml
