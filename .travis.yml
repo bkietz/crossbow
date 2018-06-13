@@ -1,52 +1,84 @@
-branches:
-  # don't attempt to build branches intented for windows builds
-  except:
-    - /.*win.*/
-
-os: linux
-dist: trusty
-language: generic
-
-# before_install:
-#     # Install Miniconda.
-#     - echo `pwd`
-#     - |
-#       echo ""
-#       echo "Installing a fresh version of Miniconda."
-#       MINICONDA_URL="https://repo.continuum.io/miniconda"
-#       MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
-#       curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
-#       bash $MINICONDA_FILE -b
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
 #
-#     # Configure conda.
-#     - |
-#       echo ""
-#       echo "Configuring conda."
-#       source /home/travis/miniconda3/bin/activate root
-#       conda config --remove channels defaults
-#       conda config --add channels defaults
-#       conda config --add channels conda-forge
-#       conda config --set show_channel_urls true
+# http://www.apache.org/licenses/LICENSE-2.0
 #
-# install:
-#   - conda install -y -q jinja2 pygit2 click pyyaml setuptools_scm
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-script:
-  - echo "nothing to see here"
-  # # fetch all branches of crossbow
-  # - git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-  #
-  # # clone arrow with crossbow tool
-  # - pushd ..
-  # - git clone -b nightly https://github.com/kszucs/arrow
-  #
-  # # submit packaging tasks
-  # - |
-  #   python arrow/dev/tasks/crossbow.py \
-  #     conda-linux \
-  #     conda-win \
-  #     conda-osx \
-  #     wheel-linux \
-  #     wheel-win \
-  #     wheel-osx \
-  #     linux-packages
+os: osx
+sudo: required
+language: objective-c
+
+env:
+  global:
+    - TRAVIS_TAG=build-30
+    - PLAT=x86_64
+    - BUILD_REF=98cad0aadff771d2433155ea8dc266f942334330
+    - PYARROW_VERSION=0.9.1.dev258+g98cad0aa.d20180613
+
+matrix:
+  exclude:
+    - python: 3.5
+  include:
+    - env:
+        - MB_PYTHON_VERSION=2.7
+        - NP_BUILD_DEP="1.10.1"
+        - NP_TEST_DEP="1.10.1"
+        - PANDAS_DEP="0.20.3"
+    - env:
+        - MB_PYTHON_VERSION=3.5
+        - NP_BUILD_DEP="1.10.1"
+        - NP_TEST_DEP="1.10.1"
+        - PANDAS_DEP="0.20.3"
+    - env:
+        - MB_PYTHON_VERSION=3.6
+        - NP_BUILD_DEP="1.11.3"
+        - NP_TEST_DEP="1.11.3"
+        - PANDAS_DEP="0.20.3"
+
+before_install:
+  - git clone https://github.com/matthew-brett/multibuild # TODO pin it
+  - git clone -b nightly https://github.com/kszucs/arrow arrow
+
+  # Also remove artifacts that depend on Boost
+  - brew uninstall boost cgal postgis sfcgal
+  - brew update
+  - brew upgrade cmake
+  - brew install bison flex
+
+  - export CONFIG_PATH=`pwd`/arrow/dev/tasks/python-wheels/osx-build.sh
+  - source multibuild/common_utils.sh
+  - source multibuild/travis_osx_steps.sh
+
+  - before_install
+
+install:
+  - BUILD_DEPENDS="numpy==$NP_BUILD_DEP six cython"
+  - TEST_DEPENDS="numpy==$NP_TEST_DEP six pandas==$PANDAS_DEP"
+
+  - mkdir -p dist
+  - clean_code arrow $BUILD_REF
+  - build_wheel arrow $PLAT
+  - mv -v arrow/python/dist/* dist/
+
+deploy:
+  provider: releases
+  api_key: $CROSSBOW_GITHUB_TOKEN
+  file_glob: true
+  file: dist/*.whl
+  skip_cleanup: true
+  on:
+    tags: true
+
+notifications:
+  email:
+    - szucs.krisztian@gmail.com
