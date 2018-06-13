@@ -1,0 +1,32 @@
+branch: build-25
+tasks:
+  conda-linux:
+    branch: build-25-conda-linux
+    commit: 8193352932c443202a45f40645e3cef50cc1e326
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 98cad0aadff771d2433155ea8dc266f942334330
+      ARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+      BUILD_REF: 98cad0aadff771d2433155ea8dc266f942334330
+      BUILD_TAG: build-25
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+    platform: LINUX
+    template: conda-recipes/travis.linux.yml
+  conda-osx:
+    branch: build-25-conda-osx
+    commit: b7d09395dc24fa2e5f74b7ef5e47f3e120db05b2
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 98cad0aadff771d2433155ea8dc266f942334330
+      ARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+      BUILD_REF: 98cad0aadff771d2433155ea8dc266f942334330
+      BUILD_TAG: build-25
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev258+g98cad0aa.d20180613
+    platform: OSX
+    template: conda-recipes/travis.osx.yml
