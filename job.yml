@@ -1,0 +1,17 @@
+branch: build-78
+tasks:
+  conda-osx:
+    branch: build-78-conda-osx
+    commit: 9804a5ace8bc29f7d58ea2c00a4c94bc61857487
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 1315ced59840b45c3be7f6941b37bda21c813f29
+      ARROW_VERSION: 0.9.1.dev288+dirty
+      BUILD_REF: 1315ced59840b45c3be7f6941b37bda21c813f29
+      BUILD_TAG: build-78
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev288+dirty
+    platform: OSX
+    template: conda-recipes/travis.osx.yml
