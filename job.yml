@@ -1,0 +1,17 @@
+branch: build-82
+tasks:
+  linux-packages:
+    branch: build-82-linux-packages
+    commit: 2f6a7e77d163f12ea547f6559d2134c97afbfb03
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: ad7360cae4b4c41070950c9fbf8bf23fcd18deb8
+      ARROW_VERSION: 0.9.1.dev289+dirty
+      BUILD_REF: ad7360cae4b4c41070950c9fbf8bf23fcd18deb8
+      BUILD_TAG: build-82
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev289+dirty
+    platform: LINUX
+    template: linux-packages/travis.linux.yml
