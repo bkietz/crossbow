@@ -1,0 +1,17 @@
+branch: build-84
+tasks:
+  wheel-osx:
+    branch: build-84-wheel-osx
+    commit: 399bf545006ae42ad799de1cecea6d7f7112ece7
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-84
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: OSX
+    template: python-wheels/travis.osx.yml
