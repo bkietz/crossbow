@@ -1,0 +1,107 @@
+branch: build-85
+tasks:
+  conda-linux:
+    branch: build-85-conda-linux
+    commit: 78d44cd70315dd82ff0ecf9391904d8779f820f6
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: LINUX
+    template: conda-recipes/travis.linux.yml
+  conda-osx:
+    branch: build-85-conda-osx
+    commit: b6ec1eccb0563a0ca187de75614af0361988bfce
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: OSX
+    template: conda-recipes/travis.osx.yml
+  conda-win:
+    branch: build-85-conda-win
+    commit: 10b03bc8812af428eda970a6d92d35eaf7fa693a
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: WIN
+    template: conda-recipes/appveyor.yml
+  linux-packages:
+    branch: build-85-linux-packages
+    commit: 984555705b7ffe0545a360c3b478a1f79d63f432
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: LINUX
+    template: linux-packages/travis.linux.yml
+  wheel-linux:
+    branch: build-85-wheel-linux
+    commit: 8ddaa3fbf7e2e6a8e6b7ce2678fc0a6767c370b5
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: LINUX
+    template: python-wheels/travis.linux.yml
+  wheel-osx:
+    branch: build-85-wheel-osx
+    commit: 185672d07dc34f6f6c0383794b171a886aee96f5
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: OSX
+    template: python-wheels/travis.osx.yml
+  wheel-win:
+    branch: build-85-wheel-win
+    commit: 0fd1b0c77ead96ca01d2b4ea3b3f5e831a7dac97
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 60f8b752eab8cfbcc953deec202f74236f510901
+      ARROW_VERSION: 0.9.1.dev290+dirty
+      BUILD_REF: 60f8b752eab8cfbcc953deec202f74236f510901
+      BUILD_TAG: build-85
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev290+dirty
+    platform: WIN
+    template: python-wheels/appveyor.yml
