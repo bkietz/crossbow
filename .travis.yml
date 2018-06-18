@@ -1,52 +1,60 @@
-branches:
-  # don't attempt to build branches intented for windows builds
-  except:
-    - /.*win.*/
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+env:
+  global:
+    - TRAVIS_TAG=build-95
+    - PLAT=x86_64
+    - BUILD_REF=f5307d0311e0db444ac023e378543f7ad8a9344a
+    - PYARROW_VERSION=0.9.1.dev293
 
 os: linux
 dist: trusty
-language: generic
+sudo: required
+language: cpp
+services:
+  - docker
 
-# before_install:
-#     # Install Miniconda.
-#     - echo `pwd`
-#     - |
-#       echo ""
-#       echo "Installing a fresh version of Miniconda."
-#       MINICONDA_URL="https://repo.continuum.io/miniconda"
-#       MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
-#       curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
-#       bash $MINICONDA_FILE -b
-#
-#     # Configure conda.
-#     - |
-#       echo ""
-#       echo "Configuring conda."
-#       source /home/travis/miniconda3/bin/activate root
-#       conda config --remove channels defaults
-#       conda config --add channels defaults
-#       conda config --add channels conda-forge
-#       conda config --set show_channel_urls true
-#
-# install:
-#   - conda install -y -q jinja2 pygit2 click pyyaml setuptools_scm
+before_script:
+  - docker pull quay.io/xhochy/arrow_manylinux1_x86_64_base:latest
 
 script:
-  - echo "nothing to see here"
-  # # fetch all branches of crossbow
-  # - git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-  #
-  # # clone arrow with crossbow tool
-  # - pushd ..
-  # - git clone -b nightly https://github.com/kszucs/arrow
-  #
-  # # submit packaging tasks
-  # - |
-  #   python arrow/dev/tasks/crossbow.py \
-  #     conda-linux \
-  #     conda-win \
-  #     conda-osx \
-  #     wheel-linux \
-  #     wheel-win \
-  #     wheel-osx \
-  #     linux-packages
+  - git clone -b nightly https://github.com/kszucs/arrow arrow
+  - git -C arrow checkout f5307d0311e0db444ac023e378543f7ad8a9344a
+  - mkdir -p dist
+
+  - pushd arrow/python/manylinux1
+  - git clone ../../ arrow
+  - docker build -t arrow-base-x86_64 -f Dockerfile-x86_64 .
+  - docker run --shm-size=2g --rm -e PYARROW_PARALLEL=3
+    -e SETUPTOOLS_SCM_PRETEND_VERSION=$PYARROW_VERSION
+    -v $PWD:/io arrow-base-x86_64 /io/build_arrow.sh
+  - popd
+
+  - sudo mv arrow/python/manylinux1/dist/* dist/
+
+deploy:
+  provider: releases
+  api_key: $CROSSBOW_GITHUB_TOKEN
+  file_glob: true
+  file: dist/*.whl
+  skip_cleanup: true
+  on:
+    tags: true
+
+notifications:
+  email:
+    - szucs.krisztian@gmail.com
