@@ -1,0 +1,17 @@
+branch: build-116
+tasks:
+  conda-win:
+    branch: build-116-conda-win
+    commit: 37be711c456717c182723f7e9a59a8030ffa6143
+    params:
+      ARROW_BRANCH: nightly
+      ARROW_REPO: https://github.com/kszucs/arrow
+      ARROW_SHA: 266265c1ef4345d4f76707f0e90c91d285a52c8a
+      ARROW_VERSION: 0.9.1.dev313+dirty
+      BUILD_REF: 266265c1ef4345d4f76707f0e90c91d285a52c8a
+      BUILD_TAG: build-116
+      EMAIL: szucs.krisztian@gmail.com
+      PLAT: x86_64
+      PYARROW_VERSION: 0.9.1.dev313+dirty
+    platform: WIN
+    template: conda-recipes/appveyor.yml
