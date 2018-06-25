@@ -1,0 +1,23 @@
+!Job
+target: !Target
+  head: 87860d009613ad6888304644f58fc1e6bcec8c69
+  email: szucs.krisztian@gmail.com
+  branch: nightly
+  remote: https://github.com/kszucs/arrow
+  version: 0.9.1.dev324
+tasks:
+  conda-osx: !Task
+    platform: osx
+    template: conda-recipes/travis.osx.yml
+    artifacts:
+    - arrow-cpp-0.9.1.dev324-py27_0-osx-64.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py35_0-osx-64.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py36_0-osx-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py27_0-osx-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py35_0-osx-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py36_0-osx-64.tar.bz2
+    - parquet-cpp-1.4.0-0-osx-64.tar.bz2
+    params: {}
+    branch: build-135-conda-osx
+    commit: d0fc94f3e04c1a1603e3ab7f9d3a761320f7c0ca
+branch: build-135
