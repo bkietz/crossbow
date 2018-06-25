@@ -1,0 +1,80 @@
+!Job
+target: !Target
+  head: 87860d009613ad6888304644f58fc1e6bcec8c69
+  email: szucs.krisztian@gmail.com
+  branch: nightly
+  remote: https://github.com/kszucs/arrow
+  version: 0.9.1.dev324
+tasks:
+  conda-win: !Task
+    platform: win
+    template: conda-recipes/appveyor.yml
+    artifacts:
+    - arrow-cpp-0.9.1.dev324-py35_vc14_0.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py36_vc14_0.tar.bz2
+    - pyarrow-0.9.1.dev324-py35_vc14_0.tar.bz2
+    - pyarrow-0.9.1.dev324-py36_vc14_0.tar.bz2
+    - parquet-cpp-1.4.0-vc14_0.tar.bz2
+    params: {}
+    branch: build-136-conda-win
+    commit: c10170c3c126faf535c1a022ff2b4bb8b6cd60f9
+  conda-linux: !Task
+    platform: linux
+    template: conda-recipes/travis.linux.yml
+    artifacts:
+    - arrow-cpp-0.9.1.dev324-py27_0-linux-64.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py35_0-linux-64.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py36_0-linux-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py27_0-linux-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py35_0-linux-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py36_0-linux-64.tar.bz2
+    - parquet-cpp-1.4.0-0-linux-64.tar.bz2
+    params: {}
+    branch: build-136-conda-linux
+    commit: 7daa0c0e67a8de853db09bb41f0fd5c38e80205b
+  conda-osx: !Task
+    platform: osx
+    template: conda-recipes/travis.osx.yml
+    artifacts:
+    - arrow-cpp-0.9.1.dev324-py27_0-osx-64.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py35_0-osx-64.tar.bz2
+    - arrow-cpp-0.9.1.dev324-py36_0-osx-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py27_0-osx-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py35_0-osx-64.tar.bz2
+    - pyarrow-0.9.1.dev324-py36_0-osx-64.tar.bz2
+    - parquet-cpp-1.4.0-0-osx-64.tar.bz2
+    params: {}
+    branch: build-136-conda-osx
+    commit: 54bc085e61a4514afd2674230aa27b3bb689a9ef
+  wheel-win: !Task
+    platform: win
+    template: python-wheels/appveyor.yml
+    artifacts:
+    - pyarrow-0.9.1.dev324-cp35-cp35m-win_amd64.whl
+    - pyarrow-0.9.1.dev324-cp36-cp36m-win_amd64.whl
+    params: {}
+    branch: build-136-wheel-win
+    commit: d18f2a0c21a62481124ea4f1bd72b2600600cb7d
+  wheel-osx: !Task
+    platform: osx
+    template: python-wheels/travis.osx.yml
+    artifacts:
+    - pyarrow-0.9.1.dev324-cp27-cp27m-macosx_10_6_intel.whl
+    - pyarrow-0.9.1.dev324-cp35-cp35m-macosx_10_6_intel.whl
+    - pyarrow-0.9.1.dev324-cp36-cp36m-macosx_10_6_intel.whl
+    params: {}
+    branch: build-136-wheel-osx
+    commit: 686c15f0a1c9a8abfe76de472d5278dbdca83efb
+  wheel-linux: !Task
+    platform: linux
+    template: python-wheels/travis.linux.yml
+    artifacts:
+    - pyarrow-0.9.1.dev324-cp27-cp27m-manylinux1_x86_64.whl
+    - pyarrow-0.9.1.dev324-cp27-cp27mu-manylinux1_x86_64.whl
+    - pyarrow-0.9.1.dev324-cp35-cp35m-manylinux1_x86_64.whl
+    - pyarrow-0.9.1.dev324-cp36-cp36m-manylinux1_x86_64.whl
+    params: {}
+    branch: build-136-wheel-linux
+    commit: 6b14969ecb967ad10e8602c908f573f2509fe07b
+branch: build-136
+queue:
