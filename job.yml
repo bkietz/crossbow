@@ -1,0 +1,28 @@
+!Job
+target: !Target
+  head: 750728496ef0020811fbc43b913b04bda5a3a35d
+  email: bengilgit@gmail.com
+  branch: 8044-pygit2-needs-libgit2-v1-0
+  remote: https://github.com/bkietz/arrow.git
+  version: 0.16.0.dev211
+  no_rc_version: 0.16.0.dev211
+tasks:
+  gandiva-jar-osx: !Task
+    ci: travis
+    platform: osx
+    template: gandiva-jars/travis.osx.yml
+    artifacts:
+    - arrow-gandiva-0.16.0.dev211-SNAPSHOT.jar
+    params: {}
+    branch: build-744-travis-gandiva-jar-osx
+    commit: 19589dae6b4fb8c13a244f9171980c282b9894c3
+  gandiva-jar-trusty: !Task
+    ci: travis
+    platform: linux
+    template: gandiva-jars/travis.linux.yml
+    artifacts:
+    - arrow-gandiva-0.16.0.dev211-SNAPSHOT.jar
+    params: {}
+    branch: build-744-travis-gandiva-jar-trusty
+    commit: 1e7c5dde75302acfcd6a96bdfa41346e4f3eb029
+branch: build-744
